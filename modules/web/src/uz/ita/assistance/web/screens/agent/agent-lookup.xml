@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="agentsTable"
+        messagesPack="uz.ita.assistance.web.screens.agent">
+    <data readOnly="true">
+        <collection id="agentsDc"
+                    class="uz.ita.assistance.entity.Agent"
+                    view="agent-view">
+            <loader id="agentsDl">
+                <query>
+                    <![CDATA[select e from assistance_Agent e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="agentsTable"
+            spacing="true">
+        <treeTable id="agentsTable"
+                   columnHeaderVisible="false"
+                   width="100%"
+                   dataContainer="agentsDc"
+                   hierarchyProperty="parent">
+            <columns>
+                <column id="name"/>
+            </columns>
+        </treeTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

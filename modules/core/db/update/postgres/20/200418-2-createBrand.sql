@@ -1,0 +1,1 @@
+create unique index IDX_ASSISTANCE_BRAND_UK_NAME on ASSISTANCE_BRAND (NAME) ;

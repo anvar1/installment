@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="uz.ita.assistance.web.screens.contract">
+    <data>
+        <instance id="contractDc"
+                  class="uz.ita.assistance.entity.Contract"
+                  view="contract-view">
+            <loader/>
+        </instance>
+        <collection id="branchesDc" class="uz.ita.assistance.entity.Branch" view="_minimal">
+            <loader id="branchesLc">
+                <query>
+                    <![CDATA[select e from assistance_Branch e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="productsDc" class="uz.ita.assistance.entity.Product" view="product-view">
+            <loader id="productsLc">
+                <query>
+                    <![CDATA[select e from assistance_Product e]]>
+                </query>
+            </loader>
+            <collection id="subProductsDc" property="subProduct"/>
+        </collection>
+        <collection id="agentsDc" class="uz.ita.assistance.entity.Agent" view="_minimal">
+            <loader id="agentsLc">
+                <query>
+                    <![CDATA[select e from assistance_Agent e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="brandsDc" class="uz.ita.assistance.entity.Brand" view="_minimal">
+            <loader id="brandsLc">
+                <query>
+                    <![CDATA[select e from assistance_Brand  e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="propertyTypesDc" class="uz.ita.assistance.entity.PropertyType" view="_minimal">
+            <loader id="propertyTypesLc">
+                <query>
+                    <![CDATA[select e from assistance_PropertyType e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="contractDc">
+                <column width="250px">
+                    <lookupPickerField id="branchField" optionsContainer="branchesDc" property="branch"/>
+                    <lookupPickerField id="productField" optionsContainer="productsDc" property="product"/>
+                    <lookupPickerField id="subProduct" optionsContainer="subProductsDc" property="subProduct"/>
+                    <textField id="insurantField" property="insurant"/>
+                    <maskedField id="phoneField" property="phone" mask="##-###-##-##" valueMode="masked"/>
+                    <maskedField id="mobilePhoneField" property="mobilePhone" mask="##-###-##-##" valueMode="masked"/>
+                    <textField id="number" property="number"/>
+                    <dateField id="dateField" property="date"/>
+                    <textField id="liabilityField" property="liability"/>
+                    <textField id="premiumField" property="premium"/>
+                    <dateField id="dateFromField" property="dateFrom"/>
+                    <dateField id="dateToField" property="dateTo"/>
+                    <lookupPickerField id="brandField" property="brand" optionsContainer="brandsDc"/>
+                    <lookupPickerField id="propertyType" property="propertyType" optionsContainer="propertyTypesDc"/>
+                    <textField id="propertyField" property="property"/>
+                    <textField id="propertyCodeField" property="propertyCode"/>
+                    <lookupPickerField id="agentField" optionsContainer="agentsDc" property="agent"/>
+                    <textField id="commissionField" property="commission"/>
+                    <textField id="commentField" property="comment"/>
+                </column>
+            </form>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+            <button id="createAct" caption="msg://createAct"/>
+        </hbox>
+    </layout>
+</window>

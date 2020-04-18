@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="branchesTable"
+        messagesPack="uz.ita.assistance.web.screens.branch">
+    <data readOnly="true">
+        <collection id="branchesDc"
+                    class="uz.ita.assistance.entity.Branch"
+                    view="branch-view">
+            <loader id="branchesDl">
+                <query>
+                    <![CDATA[select e from assistance_Branch e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="branchesTable"
+            spacing="true">
+        <treeTable id="branchesTable"
+                   columnHeaderVisible="false"
+                   width="100%"
+                   dataContainer="branchesDc"
+                   hierarchyProperty="parent">
+            <columns>
+                <column id="name"/>
+            </columns>
+        </treeTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

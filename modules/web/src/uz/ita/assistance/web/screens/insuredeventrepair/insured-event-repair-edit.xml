@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="uz.ita.assistance.web.screens.insuredeventrepair">
+    <data>
+        <instance id="insuredEventRepairDc"
+                  class="uz.ita.assistance.entity.InsuredEventRepair"
+                  view="insuredEventRepair-view">
+            <loader/>
+        </instance>
+        <collection id="repairsDc" class="uz.ita.assistance.entity.DetailAndRepairList" view="_minimal">
+            <loader id="repairsLc">
+                <query>
+                    <![CDATA[select e from assistance_DetailAndRepairList e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="insuredEventRepairDc">
+            <column width="250px">
+                <lookupPickerField id="repairField" optionsContainer="repairsDc" property="repair"/>
+                <textField id="price" property="price"/>
+                <textField id="count" property="count"/>
+                <textField id="sum" property="sum" editable="false"/>
+                <textField id="vat" property="vat"/>
+                <textField id="vatSum" property="vatSum" editable="false"/>
+                <textField id="total" property="total" editable="false"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,5 @@
+@import "../assistance";
+
+@mixin com_haulmont_cuba {
+  @include assistance;
+}

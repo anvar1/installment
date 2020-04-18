@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <item screen="assistance_Contract.browse" insertBefore="reports"/>
+    <item screen="assistance_InsuredEvent.browse" insertBefore="reports"/>
+    <menu id="application-contractor" insertBefore="reports">
+        <item screen="assistance_Branch.browse"/>
+        <item screen="assistance_Agent.browse"/>
+        <item screen="assistance_Service.browse"/>
+    </menu>
+    <menu id="application-reference" insertBefore="reports">
+        <item screen="assistance_Product.browse"/>
+        <item screen="assistance_Brand.browse"/>
+        <item screen="assistance_Country.browse"/>
+        <item screen="assistance_Region.browse"/>
+        <item screen="assistance_DetailAndRepairList.browse"/>
+        <item screen="assistance_PropertyType.browse"/>
+    </menu>
+</menu-config>

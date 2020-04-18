@@ -1,0 +1,1 @@
+INSERT INTO "ddcdi_import_configuration" VALUES ('599b2193-db20-95b9-f443-231fb2b9f0e2', 2, '2019-12-2 11:21:45.741', 'admin', '2019-12-2 11:25:11.654', 'admin', NULL, NULL, 'Contract', 'SINGLE_TRANSACTION', 'assistance_Contract', NULL, 'eab67dda-c669-2c87-4057-0e52c04d997a', NULL, 'MM/dd/yyyy', 'Да', 'Нет', NULL, 'UTF-8');

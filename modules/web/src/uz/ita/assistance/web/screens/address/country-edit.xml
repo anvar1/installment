@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://country.editorCaption"
+        focusComponent="form"
+        messagesPack="uz.ita.assistance.web.screens.address">
+    <data>
+        <instance id="countryDc"
+                  class="uz.ita.assistance.entity.address.Country"
+                  view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="countryDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+                <textField id="nameFullField" property="nameFull"/>
+                <textField id="nameEnField" property="nameEn"/>
+                <textField id="alpha2Field" property="alpha2"/>
+                <textField id="alpha3Field" property="alpha3"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

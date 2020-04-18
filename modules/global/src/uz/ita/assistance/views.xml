@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="assistance_District" name="district-view" extends="_local">
+        <property name="region" view="_minimal"/>
+    </view>
+
+    <view entity="assistance_Branch" name="branch-view" extends="_local">
+        <property name="parent" view="_local"/>
+        <property name="client" view="_local"/>
+        <property name="address" view="_local">
+            <property name="country" view="_minimal"/>
+            <property name="region" view="_minimal"/>
+            <property name="district" view="_minimal"/>
+        </property>
+        <property name="bank" view="_local"/>
+        <property name="passport" view="_local"/>
+        <property name="contact" view="_local"/>
+    </view>
+    <view entity="assistance_Agent" name="agent-view" extends="_local">
+        <property name="parent" view="_minimal"/>
+        <property name="client" view="_local"/>
+        <property name="address" view="_local">
+            <property name="country" view="_minimal"/>
+            <property name="region" view="_minimal"/>
+            <property name="district" view="_minimal"/>
+        </property>
+        <property name="bank" view="_local"/>
+        <property name="contact" view="_local"/>
+        <property name="passport" view="_local"/>
+    </view>
+    <view entity="assistance_Service" name="service-view" extends="_local">
+        <property name="parent" view="_minimal"/>
+        <property name="client" view="_local"/>
+        <property name="address" view="_local">
+            <property name="country" view="_minimal"/>
+            <property name="region" view="_minimal"/>
+            <property name="district" view="_minimal"/>
+        </property>
+        <property name="bank" view="_local"/>
+        <property name="contact" view="_local"/>
+        <property name="passport" view="_local"/>
+    </view>
+    <view entity="assistance_Contract" name="contract-view" extends="_local" systemProperties="true">
+        <property name="branch" view="_minimal"/>
+        <property name="product" view="_minimal"/>
+        <property name="subProduct" view="_minimal"/>
+        <property name="brand" view="_minimal"/>
+        <property name="propertyType" view="_minimal"/>
+        <property name="agent" view="_minimal"/>
+        <property name="insuredEvent" view="_minimal">
+            <property name="total"/>
+        </property>
+    </view>
+    <view entity="assistance_InsuredEvent" name="insuredEvent-view" extends="_local" systemProperties="true"
+    >
+        <property name="contract" view="contract-view"/>
+        <property name="passport" view="_local"/>
+        <property name="service" view="_minimal"/>
+        <property name="repair" view="insuredEventRepair-view"/>
+        <property name="repairNotCovered" view="insuredEventRepairNotCovered-view"/>
+    </view>
+    <view entity="assistance_InsuredEvent" name="insuredEvent-view-report" extends="_local">
+        <property name="contract" view="contract-view"/>
+        <property name="passport" view="_local"/>
+        <property name="service" view="_minimal">
+            <property name="client" view="_minimal">
+                <property name="tin"/>
+                <property name="chiefName"/>
+                <property name="ncea"/>
+            </property>
+            <property name="address" view="_minimal">
+                <property name="region" view="_minimal"/>
+                <property name="district" view="_minimal"/>
+                <property name="city"/>
+            </property>
+            <property name="bank" view="_minimal">
+                <property name="code"/>
+                <property name="bankName"/>
+                <property name="accountNumber"/>
+            </property>
+        </property>
+        <property name="repair" view="insuredEventRepair-view"/>
+        <property name="repairNotCovered" view="insuredEventRepairNotCovered-view"/>
+    </view>
+    <view entity="assistance_InsuredEventRepair" name="insuredEventRepair-view" extends="_local">
+        <property name="repair" view="_minimal"/>
+        <property name="insuredEvent" view="_minimal"/>
+    </view>
+    <view entity="assistance_InsuredEventRepairNotCovered" name="insuredEventRepairNotCovered-view" extends="_local">
+        <property name="repair" view="_minimal"/>
+        <property name="insuredEvent" view="_minimal"/>
+    </view>
+    <view class="uz.ita.assistance.entity.ExtUser" name="user.browse" extends="user.browse">
+        <property name="branch" view="_minimal"/>
+        <property name="agent" view="_minimal"/>
+        <property name="service" view="_minimal"/>
+    </view>
+    <view class="uz.ita.assistance.entity.ExtUser" name="user.edit" extends="user.edit">
+        <property name="branch" view="_minimal"/>
+        <property name="agent" view="_minimal"/>
+        <property name="service" view="_minimal"/>
+    </view>
+    <view entity="assistance_Product" name="product-view" extends="_local">
+        <property name="subProduct" view="_minimal">
+            <property name="product" view="_minimal"/>
+            <property name="order"/>
+        </property>
+    </view>
+
+</views>

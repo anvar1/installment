@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="productsTable"
+        messagesPack="uz.ita.assistance.web.screens.product">
+    <data readOnly="true">
+        <collection id="productsDc"
+                    class="uz.ita.assistance.entity.Product"
+                    view="_local">
+            <loader id="productsDl">
+                <query>
+                    <![CDATA[select e from assistance_Product e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="productsTable"
+            spacing="true">
+        <groupTable id="productsTable"
+                    width="100%"
+                    dataContainer="productsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="code"/>
+                <column id="name"/>
+                <column id="description"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="productsTable.create"/>
+                <button id="editBtn" action="productsTable.edit"/>
+                <button id="removeBtn" action="productsTable.remove"/>
+                <button id="refreshBtn" action="productsTable.refresh"/>
+                <button id="excelBtn" action="productsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

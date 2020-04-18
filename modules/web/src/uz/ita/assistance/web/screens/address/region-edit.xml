@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://region.editorCaption"
+        focusComponent="form"
+        messagesPack="uz.ita.assistance.web.screens.address">
+    <data>
+        <instance id="regionDc"
+                  class="uz.ita.assistance.entity.address.Region"
+                  view="_local">
+            <loader/>
+        </instance>
+        <collection id="districtsDc" class="uz.ita.assistance.entity.address.District" view="_local">
+            <loader id="districtsDl">
+                <query><![CDATA[select e from assistance_District e where e.region = :region]]></query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="regionDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+                <textField id="nameUzField" property="nameUz"/>
+                <textField id="orderField" property="order"/>
+            </column>
+        </form>
+        <groupBox caption="msg://district.browseCaption">
+            <table id="districtsTable" dataContainer="districtsDc" height="300px" width="100%">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                    <action id="refresh" type="refresh"/>
+                    <action id="excel" type="excel"/>
+                </actions>
+                <rowsCount/>
+                <columns>
+                    <column id="name"/>
+                    <column id="nameUz"/>
+                    <column id="order"/>
+                </columns>
+                <buttonsPanel id="buttonsPanel"
+                              alwaysVisible="true">
+                    <button id="createBtn" action="districtsTable.create"/>
+                    <button id="editBtn" action="districtsTable.edit"/>
+                    <button id="removeBtn" action="districtsTable.remove"/>
+                    <button id="refreshBtn" action="districtsTable.refresh"/>
+                    <button id="excelBtn" action="districtsTable.excel"/>
+                </buttonsPanel>
+
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

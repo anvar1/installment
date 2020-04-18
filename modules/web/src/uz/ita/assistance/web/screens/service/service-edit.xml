@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="uz.ita.assistance.web.screens.service">
+    <data>
+        <instance id="serviceDc"
+                  class="uz.ita.assistance.entity.Service"
+                  view="service-view">
+            <loader/>
+        </instance>
+
+        <collection id="countryDc" class="uz.ita.assistance.entity.address.Country" view="_base">
+            <loader id="countryLd">
+                <query><![CDATA[select e from assistance_Country e ]]></query>
+            </loader>
+        </collection>
+        <collection id="regionDc" class="uz.ita.assistance.entity.address.Region" view="_base">
+            <loader id="regionLd">
+                <query><![CDATA[select e from assistance_Region e ]]></query>
+            </loader>
+        </collection>
+        <collection id="districtDc" class="uz.ita.assistance.entity.address.District" view="_base">
+            <loader id="districtLd">
+                <query><![CDATA[select e from assistance_District e where e.region = :region]]></query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="350px"
+                width="450px"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <tabSheet height="250px" >
+            <tab id="tabBase" caption="msg://baseData"  margin="true" spacing="true">
+                <form id="form" childrenCaptionWidth="150px"  dataContainer="serviceDc">
+                    <field id="parentField" property="parent" editable="false"/>
+                    <field id="nameField" property="name"/>
+                </form>
+            </tab>
+            <tab id="tabClientDetails" caption="msg://clientDetails" margin="true" spacing="true">
+                <form id="formClientDetails" childrenCaptionWidth="150px" dataContainer="serviceDc">
+                    <column>
+                        <field property="client.name"/>
+                        <field property="client.tin"/>
+                        <field property="client.ncea"/>
+                        <field property="client.chiefName"/>
+                        <field property="client.accountantName"/>
+                        <field property="client.contactName"/>
+                        <field property="client.document"/>
+                    </column>
+                    <column>
+                    </column>
+                </form>
+            </tab>
+            <tab id="tabAddress" caption="msg://address" margin="true" spacing="true">
+                <form id="formAddress" childrenCaptionWidth="150px" dataContainer="serviceDc">
+                    <column>
+                        <lookupField id="country" property="address.country" optionsContainer="countryDc" required="true"/>
+                        <lookupField id="region" property="address.region" optionsContainer="regionDc"/>
+                        <lookupField id="district" property="address.district" optionsContainer="districtDc"/>
+                        <field property="address.city"/>
+                        <field property="address.address"/>
+                    </column>
+                    <column>
+                    </column>
+                </form>
+            </tab>
+            <tab id="tabBankDetails" caption="msg://bankDetails" margin="true" spacing="true">
+                <form id="formBankDetails" childrenCaptionWidth="150px" dataContainer="serviceDc">
+                    <field property="bank.code"/>
+                    <field property="bank.bankName"/>
+                    <field property="bank.accountNumber"/>
+                </form>
+            </tab>
+            <tab id="tabContact" caption="msg://contact" margin="true" spacing="true">
+                <form id="formContact" childrenCaptionWidth="150px" dataContainer="serviceDc">
+                    <field property="contact.phone"/>
+                    <field property="contact.mobilePhone"/>
+                    <field property="contact.fax"/>
+                    <field property="contact.email"/>
+                    <field property="contact.www"/>
+                    <field property="contact.telegram"/>
+                </form>
+            </tab>
+            <tab id="tabPassport" caption="msg://passport" margin="true" spacing="true">
+                <form id="formPassport" childrenCaptionWidth="150px" dataContainer="serviceDc">
+                    <field property="passport.series"/>
+                    <field property="passport.number"/>
+                    <field property="passport.givenDate"/>
+                    <field property="passport.given"/>
+                </form>
+            </tab>
+        </tabSheet>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

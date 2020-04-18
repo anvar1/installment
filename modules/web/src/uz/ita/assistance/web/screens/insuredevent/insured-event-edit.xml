@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="uz.ita.assistance.web.screens.insuredevent">
+    <data>
+        <instance id="insuredEventDc"
+                  class="uz.ita.assistance.entity.InsuredEvent"
+                  view="insuredEvent-view">
+            <loader/>
+            <collection id="insuredEventRepairsDc" property="repair"/>
+            <collection id="insuredEventRepairsNotCoveredDc" property="repairNotCovered"/>
+
+        </instance>
+
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox" spacing="true">
+            <tabSheet id="tabSheet" stylename="framed equal-width-tabs ">
+                <tab id="act" caption="msg://act" margin="true" spacing="true">
+                    <form id="form" dataContainer="insuredEventDc" responsive="true">
+                        <column>
+                            <label value="Выгодоприобретатель" align="MIDDLE_LEFT" stylename="bold"/>
+                            <textField id="beneficiaryField" property="insurant"/>
+                            <hbox caption="Паспорт">
+                                <!--<label value="Серия" align="MIDDLE_LEFT" width="50px"/>-->
+                                <textField id="passportSeries" property="passport.series" width="40px" dataContainer="insuredEventDc" inputPrompt="XX" caseConversion="UPPER"/>
+                                <!--<label value="Номер" align="MIDDLE_LEFT" width="50px" />-->
+                                <textField id="passportNumber" property="passport.number" width="85px" dataContainer="insuredEventDc" inputPrompt="0000000"/>
+                                <dateField id="passportDate" property="passport.givenDate" width="115px" dataContainer="insuredEventDc"/>
+                            </hbox>
+                            <textField id="passportGiven" property="passport.given"/>
+                            <textField id="phoneField" property="phone"/>
+                            <label value="Акт" align="MIDDLE_LEFT" stylename="bold"/>
+                            <pickerField id="serviceField" property="service">
+                                <actions>
+                                    <action id="lookup" type="picker_lookup"/>
+                                    <action id="clear" type="picker_clear"/>
+                                </actions>
+                            </pickerField>
+                            <textField id="numberField" property="number"/>
+                            <dateField id="dateField" property="date" dataContainer="insuredEventDc" />
+                            <dateField id="eventDateField" property="eventDate"/>
+                            <textField id="yearField" property="year"/>
+                            <checkBox id="wasInsuredField" property="wasInsured"/>
+
+
+                        </column>
+                        <column>
+                            <label value="Договор" align="MIDDLE_LEFT" stylename="bold"/>
+                            <pickerField id="branch" property="contract.branch" editable="false"/>
+                            <pickerField id="brand" property="contract.brand" editable="false"/>
+                            <pickerField id="propertyType" property="contract.propertyType" editable="false"/>
+                            <textField id="property" property="contract.property" editable="false"/>
+                            <textField id="propertyCode" property="contract.propertyCode" editable="false"/>
+                            <textField id="contractNumber" property="contract.number" editable="false"/>
+                            <dateField id="contractDate" property="contract.date" editable="false"/>
+                            <textField id="insurant" property="contract.insurant" editable="false"/>
+                            <dateField id="dateFrom" property="contract.dateFrom" editable="false"/>
+                            <dateField id="dateTo" property="contract.dateTo" editable="false"/>
+                            <textField id="liability" property="contract.liability" editable="false" stylename="align-right">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                            </textField>
+                        </column>
+                    </form>
+                    <hbox spacing="true">
+                        <label value="msg://sumInsured" align="MIDDLE_LEFT" width="192px" stylename="bold"/>
+                        <label value="msg://sum" align="MIDDLE_LEFT"/>
+                        <textField id="sum" dataContainer="insuredEventDc" property="sum" editable="false" stylename="align-right" width="120px">
+                            <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                       format=",##0.00"/>
+                        </textField>
+                        <label value="msg://vatSum" align="MIDDLE_LEFT"/>
+                        <textField id="vatSum" property="vatSum" dataContainer="insuredEventDc" editable="false" stylename="align-right" width="120px">
+                            <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                       format=",##0.00"/>
+                        </textField>
+                        <label value="msg://total" align="MIDDLE_LEFT"/>
+                        <textField id="total" property="total" dataContainer="insuredEventDc" editable="false" stylename="align-right" width="120px">
+                            <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                       format=",##0.00"/>
+                        </textField>
+                    </hbox>
+                    <hbox spacing="true">
+                        <label value="msg://sumNotInsured" align="MIDDLE_LEFT" width="192px" stylename="bold"/>
+                        <label value="msg://sum" align="MIDDLE_LEFT"/>
+                        <textField id="sumNotRecovered" property="sumNotRecovered" dataContainer="insuredEventDc" editable="false" stylename="align-right" width="120px">
+                            <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                       format=",##0.00"/>
+                        </textField>
+                            <label value="msg://vatSum" align="MIDDLE_LEFT"/>
+                        <textField id="vatSumNotRecovered" property="vatSumNotRecovered" dataContainer="insuredEventDc" editable="false" stylename="align-right" width="120px">
+                            <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                       format=",##0.00"/>
+                        </textField>
+                            <label value="msg://total" align="MIDDLE_LEFT"/>
+                        <textField id="totalNotRecovered" property="totalNotRecovered" dataContainer="insuredEventDc" editable="false" stylename="align-right" width="120px">
+                            <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                       format=",##0.00"/>
+                        </textField>
+                    </hbox>
+                </tab>
+
+                <tab id="repair" caption="msg://repair" margin="true" spacing="true">
+                    <groupTable id="insuredEventRepairsTable"
+                                width="100%"
+                                reorderingAllowed="false"
+                                aggregatable="true"
+                                aggregationStyle="BOTTOM"
+                                dataContainer="insuredEventRepairsDc">
+                        <actions>
+                            <action id="create" caption="mainMsg://actions.Create" icon="ADD_ACTION"/>
+                            <action id="edit" caption="mainMsg://actions.Edit" icon="EDIT_ACTION" trackSelection="true"/>
+                            <action id="remove" type="remove"/>
+                            <action id="refresh" type="refresh"/>
+                        </actions>
+                        <columns>
+                            <column id="repair"/>
+                            <column id="price" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                            </column>
+                            <column id="count" align="CENTER"/>
+                            <column id="sum" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                                <aggregation type="SUM"/>
+                            </column>
+                            <column id="vat" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                            </column>
+                            <column id="vatSum" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                                <aggregation type="SUM"/>
+                            </column>
+                            <column id="total" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                                <aggregation type="SUM"/>
+                            </column>
+                        </columns>
+                        <rowsCount/>
+                        <buttonsPanel id="buttonsPanel"
+                                      alwaysVisible="true">
+                            <button id="createBtn" action="insuredEventRepairsTable.create"/>
+                            <button id="editBtn" action="insuredEventRepairsTable.edit"/>
+                            <button id="removeBtn" action="insuredEventRepairsTable.remove"/>
+                            <button id="refreshBtn" action="insuredEventRepairsTable.refresh"/>
+                        </buttonsPanel>
+                    </groupTable>
+                </tab>
+
+                <tab id="repairNotCovered" caption="msg://repairNotCovered" margin="true" spacing="true">
+                    <groupTable id="insuredEventRepairsNotCoveredTable"
+                                width="100%"
+                                reorderingAllowed="false"
+                                aggregatable="true"
+                                aggregationStyle="BOTTOM"
+                                dataContainer="insuredEventRepairsNotCoveredDc">
+                        <actions>
+                            <action id="create" caption="mainMsg://actions.Create" icon="ADD_ACTION"/>
+                            <action id="edit" caption="mainMsg://actions.Edit" icon="EDIT_ACTION" trackSelection="true"/>
+                            <action id="remove" type="remove"/>
+                            <action id="refresh" type="refresh"/>
+                        </actions>
+                        <columns>
+                            <column id="repair"/>
+                            <column id="price" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                            </column>
+                            <column id="count" align="CENTER"/>
+                            <column id="sum" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                                <aggregation type="SUM"/>
+                            </column>
+                            <column id="vat" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                            </column>
+                            <column id="vatSum" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                                <aggregation type="SUM"/>
+                            </column>
+                            <column id="total" align="RIGHT">
+                                <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                                           format=",##0.00"/>
+                                <aggregation type="SUM"/>
+                            </column>
+                        </columns>
+                        <rowsCount/>
+                        <buttonsPanel alwaysVisible="true">
+                            <button action="insuredEventRepairsNotCoveredTable.create"/>
+                            <button action="insuredEventRepairsNotCoveredTable.edit"/>
+                            <button action="insuredEventRepairsNotCoveredTable.remove"/>
+                            <button action="insuredEventRepairsNotCoveredTable.refresh"/>
+                        </buttonsPanel>
+                    </groupTable>
+                </tab>
+            </tabSheet>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

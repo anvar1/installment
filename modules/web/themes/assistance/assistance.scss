@@ -1,0 +1,39 @@
+@import "../halo/halo";
+
+@mixin assistance {
+  @include halo;
+
+  .c-login-main-layout-assistance {
+    background-color: #ffffff;
+  }
+
+  .v-table-row.red-color {
+    color: red;
+  }
+  .v-table-row-odd.red-color {
+    color: red;
+  }
+
+  .v-table-row.green-color {
+    color: darkgreen;
+    //font-weight: bold;
+  }
+  .v-table-row-odd.green-color {
+    color: darkgreen;
+    //font-weight: bold;
+  }
+
+  .v-table-row.blue-color {
+    color: blue;
+  }
+  .v-table-row-odd.blue-color {
+    color: blue;
+  }
+  .v-table-row.gray-color {
+    color: lightseagreen;
+  }
+  .v-table-row-odd.gray-color {
+    color: lightseagreen;
+  }
+
+}

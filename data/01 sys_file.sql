@@ -1,0 +1,1 @@
+INSERT INTO "sys_file" VALUES ('eab67dda-c669-2c87-4057-0e52c04d997a', '2019-12-19 14:18:30.611', 'admin', 0, NULL, NULL, NULL, NULL, 'InTouchAssistanceTemplate.xlsx', 'xlsx', 12510, '2019-12-19 14:18:30.593');

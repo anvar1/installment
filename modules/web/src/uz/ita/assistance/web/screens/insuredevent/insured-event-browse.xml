@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="insuredEventsTable"
+        messagesPack="uz.ita.assistance.web.screens.insuredevent">
+    <data readOnly="true">
+        <collection id="insuredEventsDc"
+                    class="uz.ita.assistance.entity.InsuredEvent"
+                    view="insuredEvent-view">
+            <loader id="insuredEventsDl">
+                <query>
+                    <![CDATA[select e from assistance_InsuredEvent e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="insuredEventsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="insuredEventsTable"
+                dataLoader="insuredEventsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="insuredEventsTable"
+                    width="100%" stylename="no-stripes"
+                    dataContainer="insuredEventsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+                <action id="complete" trackSelection="true"/>
+                <action id="denied" trackSelection="true"/>
+                <action id="cancel" trackSelection="true"/>
+            </actions>
+            <columns>
+                <column id="number"/>
+                <column id="date"/>
+                <column id="contract"/>
+                <column id="service"/>
+                <column id="eventDate"/>
+                <column id="insurant"/>
+                <column id="wasInsured"/>
+                <column id="phone"/>
+                <column id="sum" align="RIGHT">
+                    <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                               format=",##0.00"/>
+                </column>
+                <column id="vatSum" align="RIGHT">
+                    <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                               format=",##0.00"/>
+                </column>
+                <column id="total" align="RIGHT">
+                    <formatter class="com.haulmont.cuba.gui.components.formatters.NumberFormatter"
+                               format=",##0.00"/>
+                </column>
+                <column id="status"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <!--<button id="createBtn" action="insuredEventsTable.create"/>-->
+                <button id="editBtn" action="insuredEventsTable.edit"/>
+                <button id="removeBtn" action="insuredEventsTable.remove"/>
+                <button id="refreshBtn" action="insuredEventsTable.refresh"/>
+                <button id="excelBtn" action="insuredEventsTable.excel"/>
+                <button id="printDetails" caption="msg://printAct"/>
+                <button id="completeBtn" action="insuredEventsTable.complete" caption="msg://completeAct"/>
+                <button id="deniedBtn" action="insuredEventsTable.denied" caption="msg://deniedAct"/>
+                <button id="cancelBtn" action="insuredEventsTable.cancel" caption="msg://cancelAct"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

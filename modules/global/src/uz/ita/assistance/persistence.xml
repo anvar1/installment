@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="assistance" transaction-type="RESOURCE_LOCAL">
+
+        <class>uz.ita.assistance.entity.Product</class>
+        <class>uz.ita.assistance.entity.Agent</class>
+        <class>uz.ita.assistance.entity.Branch</class>
+        <class>uz.ita.assistance.entity.Brand</class>
+        <class>uz.ita.assistance.entity.Contract</class>
+        <class>uz.ita.assistance.entity.Service</class>
+        <class>uz.ita.assistance.entity.BranchHierarchy</class>
+        <class>uz.ita.assistance.entity.BankDetails</class>
+        <class>uz.ita.assistance.entity.Passport</class>
+        <class>uz.ita.assistance.entity.address.Country</class>
+        <class>uz.ita.assistance.entity.address.Region</class>
+        <class>uz.ita.assistance.entity.address.District</class>
+        <class>uz.ita.assistance.entity.address.Address</class>
+        <class>uz.ita.assistance.entity.ClientDetails</class>
+        <class>uz.ita.assistance.entity.Contact</class>
+        <class>uz.ita.assistance.entity.AgentHierarchy</class>
+        <class>uz.ita.assistance.entity.ServiceHierarchy</class>
+        <class>uz.ita.assistance.entity.InsuredEvent</class>
+        <class>uz.ita.assistance.entity.DetailAndRepairList</class>
+        <class>uz.ita.assistance.entity.InsuredEventRepair</class>
+        <class>uz.ita.assistance.entity.PropertyType</class>
+        <class>uz.ita.assistance.entity.InsuredEventRepairNotCovered</class>
+        <class>uz.ita.assistance.entity.ExtUser</class>
+        <class>uz.ita.assistance.entity.SubProduct</class>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="detailAndRepairListsTable"
+        messagesPack="uz.ita.assistance.web.screens.detailandrepairlist">
+    <data readOnly="true">
+        <collection id="detailAndRepairListsDc"
+                    class="uz.ita.assistance.entity.DetailAndRepairList"
+                    view="_local">
+            <loader id="detailAndRepairListsDl">
+                <query>
+                    <![CDATA[select e from assistance_DetailAndRepairList e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="detailAndRepairListsTable"
+            spacing="true">
+        <groupTable id="detailAndRepairListsTable"
+                    width="100%"
+                    dataContainer="detailAndRepairListsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="detailAndRepairListsTable.create"/>
+                <button id="editBtn" action="detailAndRepairListsTable.edit"/>
+                <button id="removeBtn" action="detailAndRepairListsTable.remove"/>
+                <button id="refreshBtn" action="detailAndRepairListsTable.refresh"/>
+                <button id="excelBtn" action="detailAndRepairListsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

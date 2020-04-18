@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://region.browseCaption"
+        focusComponent="regionsTable"
+        messagesPack="uz.ita.assistance.web.screens.address">
+    <data readOnly="true">
+        <collection id="regionsDc"
+                    class="uz.ita.assistance.entity.address.Region"
+                    view="_local">
+            <loader id="regionsDl">
+                <query>
+                    <![CDATA[select e from assistance_Region e order by e.order]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="regionsTable"
+            spacing="true">
+        <groupTable id="regionsTable"
+                    width="100%"
+                    dataContainer="regionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="nameUz"/>
+                <column id="order"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="regionsTable.create"/>
+                <button id="editBtn" action="regionsTable.edit"/>
+                <button id="removeBtn" action="regionsTable.remove"/>
+                <button id="refreshBtn" action="regionsTable.refresh"/>
+                <button id="excelBtn" action="regionsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

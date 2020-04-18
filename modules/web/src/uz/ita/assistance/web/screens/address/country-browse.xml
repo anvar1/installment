@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://country.browseCaption"
+        focusComponent="countriesTable"
+        messagesPack="uz.ita.assistance.web.screens.address">
+    <data readOnly="true">
+        <collection id="countriesDc"
+                    class="uz.ita.assistance.entity.address.Country"
+                    view="_local">
+            <loader id="countriesDl">
+                <query>
+                    <![CDATA[select e from assistance_Country e order by e.name]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="countriesTable"
+            spacing="true">
+        <groupTable id="countriesTable"
+                    width="100%"
+                    dataContainer="countriesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="nameFull"/>
+                <column id="nameEn"/>
+                <column id="alpha2"/>
+                <column id="alpha3"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="countriesTable.create"/>
+                <button id="editBtn" action="countriesTable.edit"/>
+                <button id="removeBtn" action="countriesTable.remove"/>
+                <button id="refreshBtn" action="countriesTable.refresh"/>
+                <button id="excelBtn" action="countriesTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

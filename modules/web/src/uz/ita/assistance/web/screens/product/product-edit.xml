@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="uz.ita.assistance.web.screens.product">
+    <data>
+        <instance id="productDc"
+                  class="uz.ita.assistance.entity.Product"
+                  view="product-view">
+            <loader/>
+            <collection id="subProductsDc" property="subProduct"/>
+        </instance>
+<!--        <collection id="subProductsDc" class="uz.ita.assistance.entity.SubProduct" view="_local">-->
+<!--            <loader id="subProductsDl">-->
+<!--                <query><![CDATA[select e from assistance_SubProduct e where e.product = :product]]></query>-->
+<!--            </loader>-->
+<!--        </collection>-->
+    </data>
+
+
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="productDc">
+            <column width="250px">
+                <textField id="codeField" property="code"/>
+                <textField id="nameField" property="name"/>
+                <textField id="descriptionField" property="description"/>
+            </column>
+        </form>
+
+        <groupBox caption="msg://editorCaption">
+            <table id="subProductsTable" dataContainer="subProductsDc" height="300px" width="100%">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                    <action id="refresh" type="refresh"/>
+                    <action id="excel" type="excel"/>
+                </actions>
+                <rowsCount/>
+                <columns>
+                    <column id="name"/>
+                    <column id="order"/>
+                </columns>
+                <buttonsPanel id="buttonsPanel"
+                              alwaysVisible="true">
+                    <button id="createBtn" action="subProductsTable.create"/>
+                    <button id="editBtn" action="subProductsTable.edit"/>
+                    <button id="removeBtn" action="subProductsTable.remove"/>
+                    <button id="refreshBtn" action="subProductsTable.refresh"/>
+                    <button id="excelBtn" action="subProductsTable.excel"/>
+                </buttonsPanel>
+
+            </table>
+        </groupBox>
+
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

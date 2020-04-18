@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="servicesTable"
+        messagesPack="uz.ita.assistance.web.screens.service">
+    <data readOnly="true">
+        <collection id="servicesDc"
+                    class="uz.ita.assistance.entity.Service"
+                    view="service-view">
+            <loader id="servicesDl">
+                <query>
+                    <![CDATA[select e from assistance_Service e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="servicesTable"
+            spacing="true">
+        <treeTable id="servicesTable"
+                   width="100%"
+                   dataContainer="servicesDc"
+                   hierarchyProperty="parent">
+            <actions>
+                <action id="create" caption="mainMsg://actions.Create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="client.tin"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel" alwaysVisible="true">
+                <button id="createBtn" action="servicesTable.create"/>
+                <button id="editBtn" action="servicesTable.edit"/>
+                <button id="removeBtn" action="servicesTable.remove"/>
+                <button id="refreshBtn" action="servicesTable.refresh"/>
+                <button id="excelBtn" action="servicesTable.excel"/>
+            </buttonsPanel>
+        </treeTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
